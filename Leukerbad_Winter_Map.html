@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Overlay with Image and Close Button</title>
+  <title>Overlay with URL and Close Button</title>
   <style>
     body {
       margin: 0;
@@ -24,12 +24,12 @@
       align-items: center;
     }
 
-    /* Fullscreen image display */
+    /* Centered iframe for the website */
     iframe {
-      width: 100%;
-      height: 100%;
+      width: 90%;
+      height: 90%;
       border: none;
-      object-fit: contain; /* Make sure the image fits within the iframe */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
     /* Close button styling */
@@ -55,21 +55,21 @@
 </head>
 <body>
   <script>
-    // Set the image URL here for easy customization
-    const imageURL = "https://search.ch/meteo/images/snow/skimap/83.jpg";
+    // Set the website URL here for easy customization
+    const websiteURL = "https://search.ch/meteo/images/snow/skimap/83.jpg";
   </script>
 
   <!-- Overlay containing the iframe and close button -->
   <div id="overlay">
     <!-- Close button -->
     <button class="close-btn" onclick="closeWindow()">Close Window</button>
-    <!-- Website iframe displaying the image -->
+    <!-- Website iframe -->
     <iframe id="websiteFrame" src=""></iframe>
   </div>
 
   <script>
-    // Load the image URL into the iframe
-    document.getElementById("websiteFrame").src = imageURL;
+    // Load the website URL into the iframe
+    document.getElementById("websiteFrame").src = websiteURL;
 
     // Function to close the Chromium window
     function closeWindow() {
