@@ -63,8 +63,8 @@
   <div id="overlay">
     <!-- Close button -->
     <button class="close-btn" onclick="closeWindow()">Close Window</button>
-    <!-- Website iframe -->
-    <iframe id="websiteFrame" src=""></iframe>
+    <!-- Website iframe with sandbox attribute to restrict opening new windows/tabs -->
+    <iframe id="websiteFrame" src="" sandbox="allow-scripts allow-same-origin"></iframe>
   </div>
 
   <script>
