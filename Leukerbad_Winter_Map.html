@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Overlay with URL and Close Button</title>
+  <title>Fullscreen Overlay with URL and Close Button</title>
   <style>
     body {
       margin: 0;
@@ -24,7 +24,7 @@
       align-items: center;
     }
 
-    /* Centered iframe for the website */
+    /* Fullscreen iframe for the website */
     iframe {
       width: 90%;
       height: 90%;
@@ -63,8 +63,8 @@
   <div id="overlay">
     <!-- Close button -->
     <button class="close-btn" onclick="closeWindow()">Close Window</button>
-    <!-- Website iframe with sandbox attribute to restrict opening new windows/tabs -->
-    <iframe id="websiteFrame" src="" sandbox="allow-scripts allow-same-origin"></iframe>
+    <!-- Website iframe with updated sandbox to prevent popups and allow touch and zoom -->
+    <iframe id="websiteFrame" src="" sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms"></iframe>
   </div>
 
   <script>
