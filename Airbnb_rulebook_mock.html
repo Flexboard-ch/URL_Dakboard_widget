@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>House Guide & Rulebook | Your Airbnb Stay</title>
+  <meta name="description" content="A beautifully designed mock Airbnb house manual and rulebook for guests." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f172a;           /* slate-900 */
+      --panel: #111827;        /* gray-900 */
+      --muted: #94a3b8;        /* slate-400 */
+      --text: #e5e7eb;         /* gray-200 */
+      --accent: #22c55e;       /* green-500 */
+      --accent-2: #06b6d4;     /* cyan-500 */
+      --ring: rgba(34,197,94,.35);
+      --card: #0b1220;         /* deep panel */
+      --border: #1f2937;       /* gray-800 */
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body{
+      margin:0; background: radial-gradient(1200px 800px at 10% -10%, #0b2130 0%, var(--bg) 50%),
+                radial-gradient(1200px 800px at 110% 10%, #111b2a 0%, var(--bg) 60%),
+                linear-gradient(180deg, #0b1020, var(--bg));
+      color: var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.65;
+    }
+    .container{ max-width: 1100px; margin: 0 auto; padding: 24px }
+    header.hero{
+      position: relative; overflow: hidden; border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(34,197,94,0.12), rgba(6,182,212,0.10) 60%, rgba(17,24,39,.0));
+    }
+    .hero-inner{ display:grid; grid-template-columns: 1.1fr .9fr; gap:40px; align-items:center; padding: 56px 24px }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.4px; }
+    .brand .logo{ width:36px; height:36px; border-radius:12px; display:grid; place-items:center; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow:0 10px 30px rgba(6,182,212,.35) }
+    h1{ font-family: "Playfair Display", serif; font-size: clamp(34px, 5vw, 54px); line-height:1.1; margin: 10px 0 8px }
+    p.lead{ color: var(--muted); font-size: clamp(16px, 2vw, 18px) }
+    .cta-row{ margin-top:20px; display:flex; gap:12px; flex-wrap:wrap }
+    .btn{ border:1px solid var(--border); background:#0d1626; color:var(--text); padding:12px 16px; border-radius:14px; text-decoration:none; display:inline-flex; align-items:center; gap:10px; font-weight:600 }
+    .btn.primary{ background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b1120; border-color: transparent }
+    .btn:focus{ outline: 3px solid var(--ring); outline-offset:2px }
+
+    .card{ background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid var(--border); border-radius:22px; padding:22px; box-shadow:0 10px 30px rgba(0,0,0,.25) }
+    .grid{ display:grid; gap:18px }
+    .grid.cols-3{ grid-template-columns: repeat(3, 1fr) }
+    .grid.cols-2{ grid-template-columns: repeat(2, 1fr) }
+    .muted{ color: var(--muted) }
+    .kicker{ text-transform: uppercase; letter-spacing:.2em; color: var(--accent-2); font-size:.77rem; font-weight:700 }
+    section{ padding: 26px 24px }
+    section h2{ font-size: clamp(24px, 3.2vw, 32px); margin: 6px 0 12px; font-weight:800 }
+    section h3{ font-size: 18px; margin: 8px 0 8px; font-weight:700 }
+    ul.clean{ list-style:none; padding-left:0; margin:0 }
+    ul.clean li{ padding:10px 0; border-bottom:1px dashed var(--border) }
+    .pill{ display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#0c1525; font-size:.85rem }
+    .toc{ position: sticky; top: 16px }
+
+    .rule{
+      display:grid; gap:10px; grid-template-columns: 40px 1fr; align-items:flex-start;
+      padding: 14px; border:1px solid var(--border); border-radius:16px; background: #0a1220;
+    }
+    .icon{ width:40px; height:40px; border-radius:12px; display:grid; place-items:center; background: rgba(34,197,94,.12); border:1px solid rgba(34,197,94,.25) }
+    .checklist li{ display:flex; align-items:start; gap:10px; padding:10px 12px; background:#0b1424; border:1px solid var(--border); border-radius:14px }
+
+    footer{ border-top:1px solid var(--border); padding:28px 24px; color:var(--muted); text-align:center }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; gap:22px; padding: 34px 22px }
+      .grid.cols-3{ grid-template-columns: 1fr }
+      .grid.cols-2{ grid-template-columns: 1fr }
+      .two-col{ grid-template-columns: 1fr }
+    }
+
+    .two-col{ display:grid; grid-template-columns: 280px 1fr; gap:22px }
+    .note{ font-size:.92rem; color:var(--muted) }
+    .badge{ font-size:.72rem; background:rgba(6,182,212,.15); border:1px solid rgba(6,182,212,.35); color:#e6fbff; padding:4px 8px; border-radius:999px }
+    .callout{ background:linear-gradient(180deg, rgba(245,158,11,.12), rgba(245,158,11,.06)); border:1px dashed rgba(245,158,11,.5); padding:14px; border-radius:14px }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="brand">
+          <div class="logo" aria-hidden="true">🏡</div>
+          <span>Harbor House • Guest Manual</span>
+        </div>
+        <h1>Welcome! Your Guide to a Five‑Star Stay</h1>
+        <p class="lead">Everything you need to know—house rules, Wi‑Fi, check‑out, safety, appliances and local tips—organized in one beautifully simple place.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#house-rules">Read House Rules</a>
+          <a class="btn" href="#checkout">Check‑out Checklist</a>
+          <a class="btn" href="#contacts">Emergency & Contacts</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 8px">Fast Facts</h3>
+        <div class="grid cols-2">
+          <div>
+            <div class="pill">Wi‑Fi</div>
+            <p class="muted" style="margin:.4rem 0 0"><strong>Network:</strong> HarborGuest • <strong>Pass:</strong> sunshine2025</p>
+          </div>
+          <div>
+            <div class="pill">Quiet Hours</div>
+            <p class="muted" style="margin:.4rem 0 0">22:00 – 08:00</p>
+          </div>
+          <div>
+            <div class="pill">Check‑in</div>
+            <p class="muted" style="margin:.4rem 0 0">After 15:00 • Smartlock code will be sent</p>
+          </div>
+          <div>
+            <div class="pill">Check‑out</div>
+            <p class="muted" style="margin:.4rem 0 0">Before 11:00 • See checklist below</p>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:12px">
+          <strong>Tip:</strong> Save this page offline or screenshot key info in case your connection drops.
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="two-col">
+      <!-- Sidebar / TOC -->
+      <aside class="toc">
+        <div class="card" style="position:relative">
+          <div class="kicker">On this page</div>
+          <ul class="clean" style="margin-top:8px">
+            <li><a class="btn" style="margin-top:8px; width:100%" href="#house-rules">House Rules</a></li>
+            <li><a class="btn" style="width:100%" href="#safety">Safety & Security</a></li>
+            <li><a class="btn" style="width:100%" href="#appliances">Appliances & Kitchen</a></li>
+            <li><a class="btn" style="width:100%" href="#trash">Trash & Recycling</a></li>
+            <li><a class="btn" style="width:100%" href="#parking">Parking & Access</a></li>
+            <li><a class="btn" style="width:100%" href="#neighborhood">Local Tips</a></li>
+            <li><a class="btn" style="width:100%" href="#checkout">Check‑out Checklist</a></li>
+            <li><a class="btn" style="width:100%" href="#contacts">Emergency & Contacts</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <div>
+        <section id="house-rules">
+          <div class="kicker">Start here</div>
+          <h2>House Rules</h2>
+          <div class="grid cols-2">
+            <div class="rule">
+              <div class="icon" aria-hidden="true">🔇</div>
+              <div>
+                <h3>Quiet Hours</h3>
+                <p class="muted">Please respect neighbors: <strong>22:00–08:00</strong>. No loud music, parties, or gatherings beyond the number of guests on the booking.</p>
+              </div>
+            </div>
+            <div class="rule">
+              <div class="icon" aria-hidden="true">🚭</div>
+              <div>
+                <h3>No Smoking or Vaping</h3>
+                <p class="muted">Strictly no smoking/vaping indoors. If you must, use the designated outdoor area and dispose of cigarette waste safely. A <span class="badge">€250 deep‑clean fee</span> applies if violated.</p>
+              </div>
+            </div>
+            <div class="rule">
+              <div class="icon" aria-hidden="true">🐾</div>
+              <div>
+                <h3>Pets</h3>
+                <p class="muted">Pets are <strong>by prior approval only</strong>. If approved, keep off furniture and use the provided pet blanket. Pick up after them—thank you!</p>
+              </div>
+            </div>
+            <div class="rule">
+              <div class="icon" aria-hidden="true">👥</div>
+              <div>
+                <h3>Registered Guests Only</h3>
+                <p class="muted">Maximum occupancy: <strong>4</strong>. Visitors allowed 10:00–21:00. Overnight stays only for registered guests.</p>
+              </div>
+            </div>
+            <div class="rule">
+              <div class="icon" aria-hidden="true">🧹</div>
+              <div>
+                <h3>Care & Respect</h3>
+                <p class="muted">Treat the home as your own. Report spills or damages immediately so we can help. Moving heavy furniture is not allowed.</p>
+              </div>
+            </div>
+            <div class="rule">
+              <div class="icon" aria-hidden="true">🔑</div>
+              <div>
+                <h3>Keys & Smartlock</h3>
+                <p class="muted">Your temporary code is unique to your stay. Don’t share it publicly. Lost key fee: <span class="badge">€50</span>.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="safety">
+          <div class="kicker">Peace of mind</div>
+          <h2>Safety & Security</h2>
+          <div class="grid cols-2">
+            <div class="card">
+              <h3>Equipment</h3>
+              <ul class="clean">
+                <li>🧯 Fire extinguisher — under the kitchen sink</li>
+                <li>🧰 First‑aid kit — bathroom cabinet</li>
+                <li>🔌 Circuit breaker — hallway closet</li>
+                <li>🚪 Fire escape plan — back of the main door</li>
+                <li>📹 Outdoor security camera — entryway only</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>In Case of Emergency</h3>
+              <p class="muted">Dial <strong>112</strong> (EU) for police, fire, or ambulance. Then contact us using the numbers at the bottom of this page.</p>
+              <p class="muted">Please keep windows closed when heating/AC is on. Turn off candles when leaving a room.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="appliances">
+          <div class="kicker">Make yourself at home</div>
+          <h2>Appliances & Kitchen</h2>
+          <div class="grid cols-3">
+            <div class="card">
+              <h3>Oven & Stove</h3>
+              <p class="note">Induction. Use the provided cookware only. Please switch off after use and wipe surfaces once cool.</p>
+            </div>
+            <div class="card">
+              <h3>Coffee Machine</h3>
+              <p class="note">Nespresso® compatible. Complimentary pods in the drawer. Empty capsule bin when full.</p>
+            </div>
+            <div class="card">
+              <h3>Dishwasher</h3>
+              <p class="note">Tabs under the sink. Use <em>Eco</em> mode overnight. Please start a cycle before check‑out if you can.</p>
+            </div>
+            <div class="card">
+              <h3>Laundry</h3>
+              <p class="note">Washer‑dryer combo. Quick 30′ is great for light loads. Clean the lint filter after drying.</p>
+            </div>
+            <div class="card">
+              <h3>Heating & AC</h3>
+              <p class="note">Please keep between 19–22°C. Turn off when windows are open.</p>
+            </div>
+            <div class="card">
+              <h3>TV & Streaming</h3>
+              <p class="note">Use Guest profile only. Don’t purchase paid content; unauthorized charges will be billed.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="trash">
+          <div class="kicker">Keep it tidy</div>
+          <h2>Trash & Recycling</h2>
+          <div class="grid cols-2">
+            <div class="card">
+              <h3>Sorting</h3>
+              <ul class="clean">
+                <li>🗑️ General waste — black bin (kitchen)</li>
+                <li>♻️ Paper & cardboard — blue bin (hallway)</li>
+                <li>🧴 Plastics & cans — yellow bin (balcony)</li>
+                <li>🍎 Organic — green bin (under sink)</li>
+                <li>🧪 Glass — please use the neighborhood container (map below)</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Collection</h3>
+              <p class="muted">Bins are collected on <strong>Tuesdays & Fridays</strong>. If your stay overlaps, please place bags in the courtyard by 08:00. Extra bags are under the sink.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="parking">
+          <div class="kicker">Arrivals</div>
+          <h2>Parking & Access</h2>
+          <div class="grid cols-2">
+            <div class="card">
+              <h3>How to Enter</h3>
+              <p class="muted">Use the <strong>smartlock</strong> at the main door. Your code is valid from 15:00 on check‑in day until 11:30 on check‑out day.</p>
+              <p class="muted">Please ensure the door latches behind you. Do not let unknown persons into the building.</p>
+            </div>
+            <div class="card">
+              <h3>Parking</h3>
+              <p class="muted">One space is available in spot <strong>#12</strong>. Street parking is metered 08:00–20:00. Observe local signage.</p>
+              <p class="muted">EV charger: 11kW Type‑2 available in spot #12. Bring your own cable.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="neighborhood">
+          <div class="kicker">Live like a local</div>
+          <h2>Neighborhood Tips</h2>
+          <div class="grid cols-3">
+            <div class="card">
+              <h3>Groceries</h3>
+              <p class="note">Corner Market (07:00–22:00) — 3 min walk. Farmers’ market on Saturdays 09:00–13:00 at Riverside Square.</p>
+            </div>
+            <div class="card">
+              <h3>Cafés</h3>
+              <p class="note">Sunrise Bakery for croissants; Harbor Café for brunch (book ahead on weekends).</p>
+            </div>
+            <div class="card">
+              <h3>Getting Around</h3>
+              <p class="note">Tram 4 to city center every 8 minutes. Download the transit app for real‑time info.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="checkout">
+          <div class="kicker">Before you go</div>
+          <h2>Check‑out Checklist</h2>
+          <ul class="clean checklist">
+            <li>✅ Place used towels in the laundry basket.</li>
+            <li>✅ Start the dishwasher on Eco if you have time.</li>
+            <li>✅ Remove all trash and place in the courtyard bin.</li>
+            <li>✅ Return furniture to original position.</li>
+            <li>✅ Turn off lights, AC/heating, and appliances.</li>
+            <li>✅ Close all windows and lock the door behind you.</li>
+          </ul>
+          <p class="note" style="margin-top:10px">Late check‑out may be available upon request. Fees apply.</p>
+        </section>
+
+        <section id="contacts">
+          <div class="kicker">We’re here to help</div>
+          <h2>Emergency & Contacts</h2>
+          <div class="grid cols-2">
+            <div class="card">
+              <h3>Emergency</h3>
+              <p class="muted"><strong>112</strong> — Police / Fire / Ambulance</p>
+              <p class="muted"><strong>24/7 Building Security:</strong> +41 44 000 00 00</p>
+            </div>
+            <div class="card">
+              <h3>Your Host</h3>
+              <p class="muted"><strong>Host Hotline:</strong> +41 79 555 55 55</p>
+              <p class="muted"><strong>Email:</strong> hello@harborhouse.example</p>
+              <p class="muted"><strong>Maintenance:</strong> +41 76 444 44 44 (08:00–20:00)</p>
+            </div>
+          </div>
+          <div class="card" style="margin-top:14px">
+            <h3>Fees & Deposits</h3>
+            <p class="muted">Security deposit may be charged for rule violations, excessive mess, missing items, smoking indoors, or unapproved pets. We aim to be fair—please communicate any issues right away.</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Thanks for staying with us. We hope you have an amazing trip! — Harbor House</p>
+  </footer>
+
+  <script>
+    // Smooth scroll for in‑page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      })
+    })
+  </script>
+</body>
+</html>
